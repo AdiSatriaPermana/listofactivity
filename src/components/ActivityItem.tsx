@@ -1,5 +1,5 @@
 import { CheckCircle2, Circle, Clock, Trash2 } from 'lucide-react';
-import type { Activity, CategoryType } from '../types/activity';
+import type { Activity } from '../types/activity';
 
 interface ActivityItemProps {
   activity: Activity;
@@ -7,7 +7,7 @@ interface ActivityItemProps {
   onDelete: (id: number) => void;
 }
 
-const CATEGORY_BADGES: Record<CategoryType, string> = {
+const CATEGORY_BADGES: Record<string, string> = {
   Kuliah: 'bg-indigo-50 text-indigo-600 dark:bg-indigo-500/15 dark:text-indigo-400',
   Olahraga: 'bg-emerald-50 text-emerald-600 dark:bg-emerald-500/15 dark:text-emerald-400',
   Organisasi: 'bg-amber-50 text-amber-600 dark:bg-amber-500/15 dark:text-amber-400',
@@ -50,7 +50,10 @@ export default function ActivityItem({ activity, onToggle, onDelete }: ActivityI
 
           <div className="mt-1.5 flex items-center gap-2">
             <span
-              className={`rounded-md px-2 py-0.5 text-[11px] font-semibold ${CATEGORY_BADGES[activity.category]}`}
+              className={`rounded-md px-2 py-0.5 text-[11px] font-semibold ${
+                CATEGORY_BADGES[activity.category] ||
+                'bg-sky-50 text-sky-600 dark:bg-sky-500/15 dark:text-sky-400'
+              }`}
             >
               {activity.category}
             </span>
